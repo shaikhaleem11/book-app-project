@@ -1,0 +1,750 @@
+A database is an organized collection of data stored and accessed electronically. Databases are
+designed to offer an efficient way to store, retrieve and manage information.
+The data in a database is typically organized into tables consisting of rows and columns. Each
+row in a table represents a unique record (or entry), and each column in a table represents a
+certain field (or attribute) of data. For instance, a database for a business might have a table for
+"Customers", where each row represents a different customer, and columns could include
+information like "CustomerID", "Name", "Email", "Phone Number", etc.
+There are various types of databases:
+Relational Databases (RDBMS): These databases are organized into tables, with each table
+having a key field that links it to other tables. This model maintains data consistency and
+integrity. Examples include MySQL, PostgreSQL, Oracle Database, and SQL Server.
+Non-Relational Databases (NoSQL): These databases are designed to handle unstructured
+data, and they can store data in multiple ways: it could be column-oriented, document-oriented,
+graph-based or organized as a KeyValue store. Examples include MongoDB, Cassandra, Redis,
+and Neo4j.
+In-Memory Databases (IMDB): These databases reside in a computer’s main memory, instead
+of on a hard disk, which makes data access faster. Examples include Redis and Memcached.
+Cloud Databases: These are databases that are optimized or built for a virtualized environment,
+typically run on the cloud. Examples include Google Cloud Spanner, Amazon Aurora, and
+Microsoft Azure SQL.
+Object-oriented Databases (OODBMS): These databases store data in the form of objects, as in
+object-oriented programming. Examples include MongoDB and PostgreSQL (with extensions).
+Hierarchical Databases: Data is stored in a tree-like model and connected through parent/child
+relationships. IBM's Information Management System (IMS) is an example.
+Network Databases: They allow children to have multiple parents and are considered an
+evolution of hierarchical databases. An example is Integrated Data Store (IDS).
+Note that databases are managed using a database management system (DBMS). The DBMS
+provides users and programmers with a systematic way to create, retrieve, update, and manage
+data. The DBMS essentially serves as an interface between the database and end users or
+application programs, ensuring that data is consistently organized and remains easily
+accessible.
+Python Database API, also known as Python DB-API, is a standard for connecting Python
+programming language to various databases. It defines a set of methods, variables, and
+conventions that provide a consistent database interface, regardless of the underlying database
+being used.
+In Python, you use the DB-API by importing a specific database module, each of which is
+designed to connect to a specific database such as MySQL, SQLite, PostgreSQL, Oracle, etc.
+The most common methods and objects defined in DB-API are:
+Connection Objects: These are created using the connect() method of the database module.
+They represent a connection to a database.
+Cursor Objects: These are created using the cursor() method of the Connection object. They
+are used to execute SQL commands and queries on the database.
+Methods such as execute(), fetchone(), and fetchall(): These methods are used to run SQL
+commands and fetch results.
+Here is a simple example of how the DB-API could be used to connect to a SQLite database:
+import sqlite3
+# create a connection object
+conn= sqlite3.connect()
+#create a cursor object
+cursor = conn.cursor()
+#Execute SQL command
+cursor.execute (''' CREATE TABLE stocks
+(date text, trans text, symbol text, qty real, price real) ''')
+#commit the transaction
+conn.commit()
+# close the connection
+conn.close()
+In this example, sqlite3 is the database module for SQLite databases. A Connection object is
+created by calling sqlite3.connect(). A Cursor object is created from the Connection object, and
+SQL commands are executed with cursor.execute().
+Python DB-API is a powerful tool that allows Python programs to interact with databases in a
+consistent and Pythonic way.
+install python :
+python --version
+mac : python3 --version
+Tutorial uses : python 3.7.2
+python shell:
+-- python /py
+-- exit()
+Visual studio code :
+- Free Open source modern text editor
+- cross platform
+- Functionality can be extended with extensions
+- https://code.visualstudio.com/
+- install an extension
+- paste and indent ( extension) g3rry
+Create a Project Directory & python file :
+- create a folder : open with vscode
+- create a new file : mybooks.py
+======================================
+2. Build an application wiht python
+========================================
+2.1 What we will create
+2.2 The application Design Sketch
+2.3 Creating The applicaiton GUI - Part 1
+- GUI
+- Tkinter - Built-in Python module used to create GUI's
+- Module - Python file containing Python definitions and statements.
+- variables, methods, classes
+- Import the modules are imported before using the module *
+- Not good practice to import entire module.
+- only import parts of the module needed.
+- ttk - Themed Tk Widget Library.
+- widgets - They are elements used to crate GUI eg., buttons, Labels etc.
+Program :
+- from tkinter import Tk, Button, Label, Scrollbar, Listbox, StringVar, Entry, W,E,N,S, END
+- from tkinter import ttk
+- from tkinter import messagebox
+root or window
+root = Tk() => Creates an Application Window
+to Run the Application we need a loop ( Runs the application until you exit )
+root.mainloop()
+2.4 Creating The applicaiton GUI - Part 2
+-----------------------------------------------------
+- Add Title to application window
+- Add a background color to application window
+- Add a size for applicaiton window ( bydefault resizable)
+- Prevent application window from being resizable.
+root = Tk()
+root.title("My Books Database Application")
+root.configure(background="light green")
+-- Geometry() method is used to set the dimensions of the tkinter application window.
+root.geometry("850x500"), width, height,
+root.resizable(width=False,height=False)
+2.5 Creating The applicaiton GUI - Part 3
+-----------------------------------------------------
+- Add Lables for entry inputs
+- Position Lables inside the application window using grid() method
+- Add variable to store user inputs
+- Add and position entry input widgets
+-->Label widget inside the root object
+title_label = ttk.Label(root, text="title",background="Light green", font=("TkDefaultFont",16) //
+ttk.Label
+== the first row and column in a tkinter grid is zero
+-- West is considered as the Left of the window
+title_label.grid(row=0, column =0, sticky=W)
+-- StringVar() from tkinter is used to monitor changes to tkinter variables and converts input
+captured to string(text value)
+title_text= StringVar()
+title_entry = ttk.Entry(root, width=24, textvariable=title_text) // ttk.Entry
+title_entry.grid(row=0,column=1,sticky=W)
+2.6 Creating The applicaiton GUI - Part 4
+-----------------------------------------------------
+-Add Buttons
+-Add a List Box
+-Add a Scrollbar
+-Add Widgets to application window using grid() method
+author_label = ttk.Label(root, text="Author :",background="Light green",
+font=("TkDefaultFont",16)) # ttk.Label
+author_label.grid(row=0, column =2, sticky=W) # object.grid()
+author_text= StringVar()
+author_entry = ttk.Entry(root, width=24, textvariable=title_text) # ttk.Entry
+author_entry.grid(row=0,column=3,sticky=W) # object.grid()
+isbn_label = ttk.Label(root, text="ISBN :",background="Light green", font=("TkDefaultFont",16))
+# ttk.Label
+isbn_label.grid(row=0, column =4, sticky=W) # object.grid()
+isbn_text= StringVar()
+isbn_entry = ttk.Entry(root, width=24, textvariable=title_text) # ttk.Entry
+isbn_entry.grid(row=0,column=5,sticky=W) # object.grid()
+add_btn = Button(root, text="Add Book", bg="blue",fg="white",font="helvetica 10 bold",
+command="")
+add_btn.grid(row=0, column=6, sticky=W)
+list_box = Listbox(root, height=16, width=40, font="helvetica 13", bg="light blue")
+list_box.grid(row=3, column=1, columnspan=14, sticky = W + E, pady=40, padx=15)
+- Regardless of the listbox width it will spacn the columns I have specified
+- padx - horizontal spacing
+- pady - vertical spacing
+scroll_bar = Scrollbar(root)
+scroll_bar.grid(row=1, column=8, rowspan=14, sticky=W)
+list_box.configure(yscrollcommand=scroll_bar.set)
+scroll_bar.configure(command=list_box.yview)
+2.7 Creating The applicaiton GUI - Part 5
+-----------------------------------------------------
+modifyButton = Button(root, text="Modify Record", bg='purple', fg='white',font='helvetica 10
+bold', command="")
+modifyButton.grid(row=15, column=4)
+deleteButton = Button(root, text="Delete Record", bg='red', fg='white',font='helvetica 10 bold',
+command="")
+deleteButton.grid(row=15, column=5)
+viewButton = Button(root, text="View all Records", bg='black', fg='white',font='helvetica 10 bold',
+command="")
+viewButton.grid(row=15, column=1)
+clearButton = Button(root, text="Clear Screen", bg='maroon', fg='white',font='helvetica 10 bold',
+command="")
+clearButton.grid(row=15, column=2)
+exitButton = Button(root, text="Exit Application", bg='blue', fg='white',font='helvetica 10 bold',
+command="")
+exitButton.grid(row=15, column=3)
+=====================================================
+3::3. Python and Microsoft SQL Server Database Interaction
+============================================================
+3.1. Download SQL Server
+---------------------
+Download Microsoft SQL Server Developer Edition 2019
+- microsoft.com/en-us/sql-server/sql-server-downloads
+- Developer Edition ( download the software )
+- create a folder ( SQL SERVER 2019 DOWNLOAD )
+- Download Media
+- ISO , Select the folder created above
+- Downloaded the file in the specified directory.
+3.2. Install SQL Server
+------------------------
+- open the setup file
+- click on System Configuration Checker
+- check the report
+- New SQL Server Standalone installation or add features to an existing installation
+- Feature Selection
+- Database Engine Services
+- INSTANCE CONFIGURATION( Named instance : SQLSERVER2019), (INSTANCE id ) >>
+- SERVER CONFIGURATION
+- Database Engine Configuration
+- Mixed Mode ( Password : admin1234)
+- add current user
+=====================================INSTALL=============================
+============
+- CHECK the installation in Windows Menu ( Microsoft SQL Server 2019 )
+3.3. Install SQL Server Management Studio - SSMS
+--------------------------------------------------
+- SQL Server Management Studio is an IDE that provides a Graphical interface for connecting
+and working with MS SQL Server.
+- It is a free tool provided by Microsoft to manage SQL Servers.
+- Used by Professionals like database administrators and developers.
+- Used to access, configure, manage, administer and develop all components of SQL Server.
+Download and Install
+- Programs Menu > SQL Server 2019 >SQL Server 2019 installation Center
+> installation > Install SQL Server Management Tools > Download SSMS
+Free Download for SQL Server Management Studio (SSMS) 19.1 > Download
+- I copy the installer into a folder ( SQL SERVER 2019 DOWNLOAD ) & install
+SSMS-Setup-ENU
+- select the default directory , just install
+- Windows > MS SQL Server Tools > SQL Server Management Studio 19 (click to start)
+3.4. Connect SSMS to SQL Server
+----------------------------------------
+- Windows > Microsoft SQL Server Tools 19 > MS Server Management Studio >
+- SQL Server Window ( Connect > Database Engine )
+- In the connect to Server Window for the server type select Database Engine ( This is
+usually the default option )
+- You can also use SQL Server Authentication which you have to supply a username and
+password differen from your windows account ( Select Server Name , Authentication : Windows
+Authentication , Connect )
+- To Disconnect : RC on Database Serve > Disconnect
+- To exit from the SQL Server Management Studio > close the window
+3.5. Create a new database and table
+--------------------------------------
+SSMS : SQL Server Management Studio tool Built into MS SQL Server
+CREATE database books_db ;
+CREATE table books (id int IDENTITY(1,1), title varchar(255), author varchar(255), isbn int) ;
+1. Open : MS SQL Management Studio
+2. Connect to the Database Engine:
+3. Create a Database : GUI ( can create )
+4. Create a Query windows :
+press + , to see all databases, to know about the databases.
+in the query window : create database mybooks;
+- refresh the database list .
+5. create a table inside the mybooks database.
+- use mybooks ;
+-CREATE table books (id int PRIMARY KEY IDENTITY(1,1), title varchar(255), author
+varchar(255), isbn int) ;
+NOTE NOTE : in the panel find database selection option is available : CAREFUL, CAREFUL
+- otherwise you can choose use mybooks ; command to make mybooks active database
+Note : Identity columns can be used for generating key values. The identity property on a
+column makes each new value generated based on the current seed and increment. Each new
+value for a particular transaction is different from other concurrent transactions on the table.
+The Identity seed is the value that is used for the very fast row loaded into the table. The
+incremental value is what is added to the previous row that was loaded.
+dbo.books ( database owner. books ) table in the mybooks database.
+3.6. Create a database configuration file for the database :
+------------------------------------------------------------
+Create a config file for the database:
+- Driver
+- Server
+- Database
+- username
+- Password
+MS Management studio:
+- Properties of the Database Server :
+- Database Server, Database Name, UserName, Windows Password,
+- Create a new python file for configuration files.
+Same directory of the application :
+- sqlserver_config.py ( )
+- a Dictionary is a collection which is unordered, changeable and indexed. in python dictionaries
+are written with curly brackets, and they have keys and values.
+dbConfig = {
+'driver' : 'SQL Server',
+'Server' : 'DESKTOP-BSH688M\SQLSERVER2019',
+'Database' : "mybooks",
+'username' : "DESKTOP-BSH688M/User", ( Error when used \, use / )
+'password' : ''
+} // SUCCESS
+driver : connects to the database server engine,
+server :
+database :
+3.7. Install Python SQL Server Connector
+-------------------------------------------
+- install Pypyodbc
+ODBC: standard API for accessing DBMS,
+use PIP to install
+Install Virtual Environment :
+A Virtual environment is a tool that helps to keep dependencies required by different projects
+separate by creating isolated python virtual environment for them. This is one of the most
+important tools that most of the Python developers use.
+Make sure you cd to your project directory: ( download the virtualenv module )
+pip install virtualenv (Windows)
+sudo pip install virtualenv (mac and linux )
+if already on your computer it will abort the installation and tell you.
+Update Pip version :
+> python -m pip install --upgrade pip
+create an isolated virtual environment :
+- Make sure you are in your project directory.
+virtualenv myenv
+Create a Virtual Environment : ( Creates folder automatically )
+virtualenv sqlserverenv
+To activate the virtual environment :
+Folder > sqlserverenv > Scripts > source activate (run)
+> cd sqlserverenv/scripts
+> source activate
+Installing Pypyodbc : ( inside the virutal environment)
+- pypyodbc is a cross platform interface module.
+- pypyodbc interface between python and database.
+- contained only in virtual enviornment, not accessed outside the virtual environment.
+- install inside the virtual environment
+- pip install pypyodbc
+3.8. Connect Python file to SQL Server Database
+-----------------------------------------------
+Connecting to database server and database from python file:
+From the configuration file import the dictionary
+then import pypyodbc.
+import the dbconfig dictionary from the sqlserver_config.py file
+step 1 : from sqlserver_config import dbConfig
+import the pypyodbc module :
+step 2 : import pypyodbc as pyo
+Create a variable/object of pypyodbc :
+conn = pyo.connect(**dbConfig)
+# ** : takes a dictionary and extracts its contents then passes them as parameters to the
+connect() function of the pypyodbc.
+print(conn)
+run the python file : python mybooks.py
+3.9. Create a cursor object
+------------------------------
+A cursor object allows your python code to execute SQL commands in a database session.
+Cursors are created by the connection.Cursor() method.
+They are bound to the database connection.
+cursor = conn.cursor()
+3.10. Create a class and methods
+---------------------------------
+* A Class is a blueprint or template for creating objects.
+* Programmers use classes to keep related things together.
+* classes are created using the keyword class.
+* Methods are basically functions inside the class.
+class Bookdb:
+def __init__(self):
+self.con = pyo.connect(**dbConfig)
+self.cursor = con.cursor()
+print("You have connected to the database ")
+print(con)
+__init__() :
+All classes have a function called __init__(), which is always executed when the class is being
+initiated.
+It is a built-in function. It can be used to assign values to object properties or other operations
+that are ncessary to do when the object is being create.
+self parameter is a reference to the current instance of the class. and is used to access
+variables that belong to the class.
+def __del__(self):
+self.con.close()
+3.11. Add more methods
+--------------------------
+* View method
+* Insert method
+* Update method
+* Delete Method
+View Method :
+def view(self):
+self.cursor.execute("SELECT * FROM books")
+rows = self.cursor.fetchall() # fetchall the records and stored in the rows from the database
+table
+return rows
+Insert Method :
+def insert(self,title,author,isbn):
+insert_sql=("INSERT INTO books (title,author,isbn) VALUES (?,?,?)")
+values =[title,author,isbn]
+self.cursor.execute(insert_sql,values)
+self.conn.commit()
+messagebox.showinfo(title="Book Database", message="New book added to the Book
+Table of mybooks DATABASE");
+Update Method:
+def update(self,id,title,author,isbn):
+update_sql=("UPDATE books SET title=?, author=?, isbn =? WHERE id =?")
+self.cursor.execute(update_sql, [title, author, isbn, id ])
+self.conn.commit()
+messagebox.showinfo(title="mybooks Database", message="Book table updated")
+Delete Method :
+def delete(self,id):
+delete_sql=("DELETE from books where id =?")
+self.cursor.execute(delet_sql,[id])
+self.conn.commit()
+messagebox.showinfo(title="mybooks Database", message=" row deleted ")
+3.12. Create a function for selected rows
+-------------------------------------------
+Create a function for selected row inside Listbox :
+outside of the class : not part of the class.
+db = Bookdb
+def get_selected_row(event): # mouse click, any action that a user performs is an event
+global selected_tuple
+index = list_box.curselection()[0]
+selected_tuple = list_box.get(index) # tuple can not be modified
+title_entry.delete(0,'end')
+title_entry.insert('end', selected_tuple[1])
+author_entry.delete(0,'end')
+author_entry.insert('end',selected_tuple[2])
+isbn_entry.delete(0, 'end')
+isbn_entry.insert('end',selected_tuple[3])
+3.13. Create more functions
+-----------------------------
+* view_records
+* add_book
+* delete_records
+* update_records
+* on_closing
+view_records Function :
+def view_records():
+list_box.delete(0,'end')
+for row in db.view():
+list_box.insert('end',row)
+def add_book():
+db.insert(title_text.get(), authoer_text.get(), isbn_text.get() )
+list_box.delete(0, 'end')
+list_box.insert('end',(title_text.get(), author_text.get(), isbn_text.get())
+tilte_entry.delete(0, 'end')
+author_entry.delete(0, 'end')
+isbn_entry.delete(0,'end')
+conn.commit()
+def delete_records():
+db.delete(selected_tuple[0])
+conn.commit()
+def clear_screen():
+list_box.delete(0,'end')
+title_entry.delete(0,'end')
+author_entry.delete(0,'end')
+isbn_entry.delete(0,'end')
+def update_records():
+db.update(selected_tuple[0], title_text.get(), author_text.get(), isbn_text.get())
+title_entry.delete(0,'end')
+author_entry.delete(0,'end')
+isbn_entry.delete(0,'end')
+def on_closing():
+dd=db
+if messagebox.askokcancel("Quit","Do you want to quit?"):
+root.destroy()
+del dd
+3.14. Activate button widgets
+--------------------------------
+add_btn = Button(root, text="Add Book", bg="blue",fg="white",font="helvetica 10 bold",
+command=add_book)
++
+list_box.bind('<<ListboxSelect>>',get_selected_row)
+modifyButton = Button(root, text="Modify Record", bg='purple', fg='white',font='helvetica 10
+bold', command=update_records)
+deleteButton = Button(root, text="Delete Record", bg='red', fg='white',font='helvetica 10 bold',
+command=delete_records)
+viewButton = Button(root, text="View all Records", bg='black', fg='white',font='helvetica 10 bold',
+command=view_records)
+clearButton = Button(root, text="Clear Screen", bg='maroon', fg='white',font='helvetica 10 bold',
+command=clear_screen)
+exitButton = Button(root, text="Exit Application", bg='blue', fg='white',font='helvetica 10 bold',
+command=root.destroy)
+3.15. Python and SQL Server Database Interaction Part 1
+-------------------------------------------------------
+db = Bookdb() # correction in the above code
+3.16. Python and SQL Server Database Interaction Part 2
+------------------------------------------------------------
+================================================================
+================================================================
+4. python and MySQL Database Interaction
+-----------------------------------------------------------------
+4.1. Installing MySQL
+--------------------------------
+- using an installer
+- installer is a software tool used to install software on a system.
+- simplified process of software insallation.
+-installer download link
+- https://dev.mysql.com/downloads/installer/
+- MySQL Installer (installer-Web-community -online installation,
+installer-community installation - offline installation )
+- install ( double click) >> agreement >> Full >> connector/python (do it manually later ) >>
+Installed all required tools >> configure the tools
+- Standalone MYSQL Server /
+- type & networking >> default (development) >>
+- Authentication Method >> default
+- Accounts & roles >> Password ( admin123 )
+- Windows Service >> MySQL80, start mysql@startup check > ( defaults) >>
+========EXECUTE====================
+4.2. Install MySQL on Mac
+-----------------------------
+MacOS High Sierra Version 10.13
+- MySQL Community Server >> MacOS 10.13 DMG file ( Disk Image File) >> Download
+- double click on DMG file >> starts installation >> set password (admin123)
+- move to trash once installation done (installer)
+4.3. MySQL Workbench
+------------------------
+- Comprehensive visual administration tool.
+- Can be used for Database Design and Modeling.
+- Can be used for SQL development.
+- can be used to connect to databases.
+- can be used for database administration.
+- can be used to perform database backups and restore.
+- can be used for database migration.
+- used by Architects, DBA's, Developers, Programmers, Analysts.
+- MySQL installer comes with MySQL Workbench
+Open MySQL Workbench:
+- MySQL Connections:
+- Local instance
+- Connect to Database :
+- Local Insatance details:
+-root, asks to password (db123)
+4.4. Create a database and table
+--------------------------------
+Create a database and table inside mysql server :
+- MySQL Workbench : (open)
+- Local Instance : Password
+- Databases referred as schemas
+- Query Window:
+- Create a Database :
+- Create database if not exists mybooks ;
+- Create a table :
+- Create table if not exists mybooks.books
+(id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255),
+author VARCHAR(255), isbn INTEGER )
+4.5. Create a database configuration file
+--------------------------------------------
+Database configuration file to import into python file as python module
+mysql_config.py
+# name of the the dictionary : dbConfig
+dbConfig = {
+'user':'root',
+'password':"db123",
+'host':"localhost",
+'database':"mybooks"
+}
+4.6. Install Python MySQL Connector
+------------------------------------
+mysql-connector inside virtual environment.
+- mysql connector is the adaptor need to mysql database from python.
+- Create a virtual environment.
+- pip install virtualenv (Windows)
+- sudo pip install virtualenv (mac and linux )
+- Update Pip version :
+> python -m pip install --upgrade pip
+- create an isolated virtual environment :
+( Creates folder automatically )
+- virtualenv mysqlenv
+To activate the virtual environment :
+Folder > mysqlenv > Scripts > source activate (run)
+> cd sqlserverenv/scripts
+> source activate
+- Install mysql connector in the virtual environment
+> pip install mysql-connector-python
+4.7. Python MySQL Connection Configuration
+-------------------------------------------
+Modify python file to connect to MySQL Server :
+- mybooks_mysql.py ( program file )
+- mysql_config.py has dbConfig Dictionary
+Need to update mybooks_mysql.py
+from mysql_config import dbConfig
+import mysql connector :
+import mysql.connector as pyo
+insert() :
+sql = ("INSERT INTO books (title,author,isbn) VALUES (%s,%s,%s)")
+update():
+tsql = 'UPDATE books SET title=%s, author =%s, isbn =%s WHERE id= %s'
+delete():
+delquery = 'DELETE FROM books WHERE id='%s'
+4.8. Testing Python and MySQL Database Connection
+--------------------------------------------------
+> virutal environment : installed mysql-connector
+- python mybooks_mysql.py
+- SUCCESS
+- open mysql workbench
+- QUERY : select * from mybooks.books
+4.9. Python and MySQL Database Interaction Part 1
+---------------------------------------------------
+Interacting with MYsql server from python application :
+- Launch the Application :
+- work with the application ( add some data )
+4.10. Python and MySQL Database Interaction Part 2
+------------------------------------------------------
+Interacting with MYsql server from python application :
+- Launch the Application :
+- work with the application ( add some data )
+==================================================
+==================================================
+5. Python and PostgreSQL Database Interaction
+==================================================
+5.1. Install PostgreSQL
+----------------------------------------------
+- https://www.postgresql.org
+- Download
+-pgAdmin 4 -> like admin tool (GUI)
+-password (db@123/admin123)
+-port 5432 >> all defaults
+( Stack Builder ) X
+(Postgresql ) choose
+5.2. Connect to PostgreSQL with PgAdmin
+-----------------------------------------------
+Connectiong to a PostgreSQL Database:
+- Psql (interactive SQL shell terminal )
+- PgAdmin (GUI)
+Psql : interactive terminal program
+- Launch psql
+- Windows > PostgreSQL10 > SQL shell (Psql)
+Prompt :
+> Enter - Gives about Database: postgres,
+Enter - Shows info about port : 5432 ,
+Enter - Provides you the username : postgres ,
+Enter - password (db@123),
+postgres # SELECT version();
+- to terminate/Exit shell
+postgres # ctrl + c
+# prompt to terminate (y/n ) : Y
+pgAdmin Tool :
+>Windows >PostGresQL > Pgadmin4
+left pane + Servers + PostgreSQL 10 (click on it )
+- Enter the password (db@123/admin123)
+> PostgreSQL > Databases >postgres (database selected)
+>Tools > Query Tool >
+Select version() ;
+to exit > close window button
+Connecting to PostGreSQL Database from Other Applications :
+- ODBC (Open Database Connectivity )
+API
+- JDBC (Java Database Connectivity )
+API
+5.3. Create a database and table
+---------------------------------
+Create a database and table in PostgreSQL Server :
+> use pgAdmin4 (localhost:58156)
+red cross ( not connected ) , click on database, give password :
+- server connected
+> new database
+RC on Database > (mybooks ) Save
+> click and highlight the (mybooks)db and Tools >Query Tool
+- CREATE TABLE IF NOT EXISTS books ( id INTEGETER NOT NULL PRIMARY KEY, title
+VARCHAR (255), author VARCHAR(255), isbn INTEGER )
+- Refresh, Database > schema > public > tables > books
+5.4. Create a sequence
+---------------------
+Create a sequence for the id column
+- A sequence is used to generate unique numeric identifiers.
+- pgAdmin4
+- CREATE SEQUENCE books_seq START 1 INCREMENT 1 ;
+Alter table to incorporate the sequence in books table :
+- alter table books alter column id set default nextval('books_seq') ;
+5.5. Database configuration file
+--------------------------------
+Create a PostgreSQL Config File :
+postgres_config.py
+dbConfig = {
+'user':'postgres',
+'password':"db@123",
+'host':"localhost",
+'database':"mybooks",
+'port':'5432'
+}
+5.6. Install Python PostgreSQL Database Connector
+--------------------------------------------------
+install psycopg2 inside virtual environment
+- - Create a virtual environment.
+- pip install virtualenv (Windows)
+- sudo pip install virtualenv (mac and linux )
+- Update Pip version :
+> python -m pip install --upgrade pip
+- create an isolated virtual environment :
+( Creates folder automatically )
+- virtualenv postgresenv
+To activate the virtual environment :
+Folder > postgresenv > Scripts > source activate (run)
+> cd postgresenv/scripts
+> source activate
+- Install mysql connector in the virtual environment
+() > pip install psychopg2
+5.7. Modify app to connect to PostgreSQL
+----------------------------------------
+import postgres_config import dbConfig
+import psycopg2 as pyo
+from sql syntax
+5.8. Testing the connection to PostgreSQL
+------------------------------------------
+() > python mybooks_postgres.py
+5.9. Python and PostgreSQL Database Interaction - Part 1
+---------------------------------------------------------
+5.10. Python and PostgreSQL Database Interaction - Part 2
+---------------------------------------------------------
+==============================================
+6. Python and SQLite Database Interaction
+===============================================
+6.1. Installing SQLite
+------------------------
+Download and install :
+https://www.sqlite.org/download.html
+you will need a software extraction tool like winrar, winzip, 7zip etc. to extract the compressed
+content.
+- Extract, rename the folder sqlite, move it to C:/folder
+- run sqlite3
+sqlite> .help
+sqlite > .quit ( to quit the sqlite )
+6.2. Modify Python App to connect to SQLite
+--------------------------------------------
+Create a folder : sqlite in the project directory
+Python has builtin driver to connect to sqlite
+copy mybooks.py into the sqlite folder
+I have not created a virtual environment as sqlite is a small, portable and compact database
+system, we do not need to install any database driver adapter to interact with it's database from
+Python Application file.
+mybooks.py
+remove : from xxxx_config import dbconfig
+import sqlite3 as pyo
+con= pyo.connect("mybooks")
+class Bookdb:
+self.con = pyo.connect("mybooks.db") # must add .db to the name to create db
+# if you want database created at a different location. you have to specify the path e.g.,
+c:\db\mybooks
+self.cursor=con.cursor()
++ self.cursor.execute ("CREATE TABLE IF NOT EXISTS books(id INTEGER PRIMARY KEY,
+title TEXT, author TEXT, isbn INTEGER)")
++ self.con.commit()
+6.3. Test connection to SQLite Database
+---------------------------------------
+Testing connection to sqlite database from python
+open sqlite folder >
+run the python file the same directory.
+cmd > python mybooks.py
+6.4. Python and SQLite Interaction
+-----------------------------------
+interacting with sqlite from python application
+- work with the application developed
+6.5. SQLite Studio
+--------------------
+SqliteStudio is a SQlite database manager.
+sqlite3 shell , SQLite Studio. (GUI)
+Features of SQLiteStudio
+- portable
+- intuitive interface
+- powerful, yet light and fast
+- Cross-platform
+- Exporting to various formats
+- importing data from various formats.
+- Open source and Free
+https://sqlitestudio.pl/index.rvt>act=download
+6.6. DB Browser for SQLite
+------------------------------
+- High quality, visual, open source tool to create, design, and edit database files compatible
+with SQLite.
+- Database Management tool with GUI.
+- https://sqlitebrowser.org
+- use nightly builds , DBbrswer
+6.7. Viewing database records
+------------------------------
+- DB Browser for SQLite
+- SQLite Studio.
+sqlite (folder) > mybooks (file), mybooks(Data base file)
+mybooks(file) > access from DB Browser :
